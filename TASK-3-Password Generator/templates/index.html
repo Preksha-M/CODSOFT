@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Password Generator</h2>
+
+    <form method="POST">
+        <input type="number" name="length" placeholder="Enter password length" required>
+        <br>
+        <button type="submit">Generate</button>
+    </form>
+
+    {% if password %}
+        <p class="result">Generated Password:</p>
+        <h3>{{ password }}</h3>
+    {% endif %}
+</div>
+
+</body>
+</html>
