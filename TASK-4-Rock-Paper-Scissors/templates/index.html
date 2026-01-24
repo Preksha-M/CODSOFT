@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>✊✋✌ Rock Paper Scissors</h2>
+
+    <p class="score">
+        👤 You: {{ user_score }} |
+        💻 Computer: {{ computer_score }}
+    </p>
+
+    <form method="POST">
+        <button name="choice" value="Rock">✊ Rock</button>
+        <button name="choice" value="Paper">✋ Paper</button>
+        <button name="choice" value="Scissors">✌ Scissors</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            <p><b>You chose:</b> {{ user }}</p>
+            <p><b>Computer chose:</b> {{ computer }}</p>
+            <h3>{{ result }}</h3>
+        </div>
+    {% endif %}
+
+    <form method="POST">
+        <button class="reset" name="reset">🔄 Play Again</button>
+    </form>
+</div>
+
+</body>
+</html>
