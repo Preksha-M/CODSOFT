@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Book</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #691438ce;
+            display: flex;
+            justify-content: center;
+            padding: 90px;
+        }
+
+        .box {
+            background: white;
+            width: 450px;
+            padding: 90px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #aaa;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 9px;
+            margin: 5px 0;
+        }
+
+        .contact {
+            background: #eee;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        a {
+            margin-right: 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>📒 Contact Book</h2>
+
+    <form method="POST">
+        <input name="name" placeholder="Name" required>
+        <input name="phone" placeholder="Phone" required>
+        <input name="email" placeholder="Email">
+        <input name="address" placeholder="Address">
+        <button>Add Contact</button>
+    </form>
+
+    <form method="POST" action="/search">
+        <input name="keyword" placeholder="Search by name or phone">
+        <button>Search</button>
+    </form>
+
+    {% for c in contacts %}
+    <div class="contact">
+        <b>{{ c.name }}</b><br>
+        📞 {{ c.phone }}<br>
+        ✉️ {{ c.email }}<br>
+        🏠 {{ c.address }}<br><br>
+
+        <a href="/edit/{{ loop.index0 }}">✏️ Edit</a>
+        <a href="/delete/{{ loop.index0 }}">🗑️ Delete</a>
+    </div>
+    {% endfor %}
+
+    {% if edit_id is defined %}
+    <hr>
+    <h3>Edit Contact</h3>
+    <form method="POST" action="/edit/{{ edit_id }}">
+        <input name="name" value="{{ contacts[edit_id].name }}">
+        <input name="phone" value="{{ contacts[edit_id].phone }}">
+        <input name="email" value="{{ contacts[edit_id].email }}">
+        <input name="address" value="{{ contacts[edit_id].address }}">
+        <button>Update Contact</button>
+    </form>
+    {% endif %}
+</div>
+
+</body>
+</html>
